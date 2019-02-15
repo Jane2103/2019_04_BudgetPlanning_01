@@ -1,0 +1,10 @@
+bin/
+obj/
+BudgetPlanning_konsultacje_2019_02_14
+draft/
+2019_04_BudgetPlanning#01.*
+*.zip
+*.xml
+testFile.*
+*.mm
+*.uxf
