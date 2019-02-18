@@ -126,3 +126,15 @@ string UserManager::getUserSurname() {
 void UserManager::logOutUser() {
     loggedUserId = 0;
 }
+
+void UserManager::changePassword() {
+    vector <User> :: iterator it;
+    string newPassword;
+    for (it = users.begin(); it != users.end(); it++) {
+        if (loggedUserId == it -> getUserId()) {
+            cout << "New password: ";
+            cin >> newPassword;
+            it -> setPassword(newPassword);
+        }
+    }
+}
