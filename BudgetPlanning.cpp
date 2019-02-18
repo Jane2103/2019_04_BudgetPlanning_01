@@ -20,7 +20,7 @@ void BudgetPlanning::displayStartMenu() {
 
         switch (userChoice) {
         case '1':
-            //logOnUser();
+            logOnUser();
             break;
         case '2':
             registerUser();
@@ -37,4 +37,64 @@ void BudgetPlanning::registerUser() {
 
 void BudgetPlanning::displayUsers() {
     userManager.displayUsers();
+}
+
+void BudgetPlanning::displayLoggedUserMenu() {
+    char userChoice;
+    system("cls");
+
+    cout << "Logged user: " << userManager.getUserName() << " " << userManager.getUserSurname() << endl;
+    cout << "Logged user id: " << userManager.getLoggedUserId() << endl; //development only
+
+    cout << "------------------------------" << endl;
+    cout << "(1) Add income" << endl;
+    cout << "(2) Add expense" << endl;
+    cout << "(3) Current month balance" << endl;
+    cout << "(4) Previous month balance" << endl;
+    cout << "(5) Custom period balance" << endl;
+    cout << "(6) Change password" << endl;
+    cout << "(7) Log out" << endl;
+    cout << "------------------------------" << endl;
+
+    cout << "Select: ";
+    cin >> userChoice;
+
+    cout << "------------------------------" << endl;
+
+    //system("pause");
+    switch (userChoice) {
+    case '1':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '2':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '3':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '4':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '5':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '6':
+        cout << "Not implemented yet" << endl;
+        break;
+    case '7':
+        cout << "Not implemented yet" << endl;
+        break;
+    }
+}
+
+void BudgetPlanning::logOnUser() {
+    userManager.logOnUser();
+    if (userManager.userLogged()) {
+        //to implement
+        financeManager = new FinanceManager("incomes.xml", "expenses.xml", userManager.getLoggedUserId());
+        while (userManager.userLogged())
+            displayLoggedUserMenu();
+    }
+    else
+        system("cls");
 }
