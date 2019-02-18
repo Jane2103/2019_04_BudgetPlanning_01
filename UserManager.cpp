@@ -122,3 +122,7 @@ string UserManager::getUserName() {
 string UserManager::getUserSurname() {
     return loggedUserSurname;
 }
+
+void UserManager::logOutUser() {
+    loggedUserId = 0;
+}

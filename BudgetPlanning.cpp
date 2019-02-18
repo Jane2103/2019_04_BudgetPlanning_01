@@ -82,7 +82,7 @@ void BudgetPlanning::displayLoggedUserMenu() {
         cout << "Not implemented yet" << endl;
         break;
     case '7':
-        cout << "Not implemented yet" << endl;
+        logOutUser();
         break;
     }
 }
@@ -97,4 +97,12 @@ void BudgetPlanning::logOnUser() {
     }
     else
         system("cls");
+}
+
+void BudgetPlanning::logOutUser() {
+    userManager.logOutUser();
+    cout << "User has been logged out" << endl << endl;
+    system("pause");
+    displayStartMenu();
+    delete financeManager;
 }
