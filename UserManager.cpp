@@ -135,6 +135,9 @@ void UserManager::changePassword() {
             cout << "New password: ";
             cin >> newPassword;
             it -> setPassword(newPassword);
+            usersFile.changePassword(*it);
         }
     }
+    cout << endl << "Password has been changed" << endl << endl;
+    system("pause");
 }
