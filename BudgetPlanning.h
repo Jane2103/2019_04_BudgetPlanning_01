@@ -15,6 +15,9 @@ class BudgetPlanning {
 
 public:
     BudgetPlanning(string usersFileName) : userManager(usersFileName) {};
+    ~BudgetPlanning() {
+        delete financeManager;
+    }
     void registerUser();
     void logOnUser();
     void logOutUser();

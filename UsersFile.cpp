@@ -43,3 +43,20 @@ void UsersFile::saveUserToFile(User user) {
 
     xml.Save(USERS_FILE_NAME.c_str());
 }
+
+void UsersFile::changePassword(User user) {
+    CMarkup xml;
+
+    xml.Load(USERS_FILE_NAME.c_str());
+
+    while (xml.FindElem("userId")) {
+        if (user.getUserId() == atoi(xml.GetData().c_str())) {
+            xml.FindElem("password");
+            xml.RemoveElem();
+            xml.AddElem("password", user.getPassword());
+            break;
+        }
+    }
+
+    xml.Save(USERS_FILE_NAME.c_str());
+}

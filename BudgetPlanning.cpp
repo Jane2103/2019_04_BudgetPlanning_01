@@ -79,7 +79,7 @@ void BudgetPlanning::displayLoggedUserMenu() {
         cout << "Not implemented yet" << endl;
         break;
     case '6':
-        cout << "Not implemented yet" << endl;
+        userManager.changePassword();
         break;
     case '7':
         logOutUser();
