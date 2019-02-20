@@ -12,9 +12,12 @@ using namespace std;
 class BudgetPlanning {
     UserManager userManager;
     FinanceManager *financeManager;
+    const string INCOMES_FILE_NAME;
+    const string EXPENSES_FILE_NAME;
 
 public:
-    BudgetPlanning(string usersFileName) : userManager(usersFileName) {};
+    BudgetPlanning(string usersFileName, string incomesFileName, string expensesFileName)
+        : userManager(usersFileName),  INCOMES_FILE_NAME(incomesFileName), EXPENSES_FILE_NAME(expensesFileName) {};
     ~BudgetPlanning() {
         delete financeManager;
     }
