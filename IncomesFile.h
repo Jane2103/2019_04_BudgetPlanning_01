@@ -17,6 +17,7 @@ public:
     IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {};
     vector <Income> loadIncomesFromFile(int loggedUserId);
     int getLastIncomeId();
+    void saveIncomeIntoFile(Income income);
 };
 
 #endif

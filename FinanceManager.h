@@ -31,6 +31,7 @@ public:
     };
     void addIncome();
     void displayIncomes(); //development only
+    Income provideIncomeDetails();
 };
 
 #endif
