@@ -28,6 +28,7 @@ Income FinanceManager::provideIncomeDetails() {
     int dateConverted;
     string item;
     float amount;
+    char selectOption;
 
     income.setUserId(LOGGED_USER_ID);
     income.setIncomeId(incomesFile.getLastIncomeId() + 1);
@@ -38,10 +39,25 @@ Income FinanceManager::provideIncomeDetails() {
     cin >> item;
     income.setItem(item);
 
-    cout << "Enter date: ";
+    /*cout << "Enter date: ";
     cin >> dateToConvert;
     dateConverted = atoi(dateToConvert.c_str());
-    income.setDate(dateConverted);
+    income.setDate(dateConverted);*/
+
+    cout << "With what date do you want to post the income?" << endl;
+    cout << "(1) Actual date" << endl;
+    cout << "(2) Custom date" << endl;
+    cout << "Select option: ";
+    cin >> selectOption;
+
+    switch (selectOption)
+    {
+    case '1':
+        dateToConvert = timeManager.getActualDateAsString();
+        dateConverted = timeManager.getDateAsInteger(dateToConvert);
+        income.setDate(dateConverted);
+        break;
+    }
 
     cout << "Enter amount (PLN): ";
     cin >> amount;

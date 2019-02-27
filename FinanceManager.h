@@ -9,6 +9,7 @@
 #include "Expense.h"
 #include "IncomesFile.h"
 #include "ExpensesFile.h"
+#include "TimeManager.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class FinanceManager {
     ExpensesFile expensesFile;
 
     const int LOGGED_USER_ID;
+    TimeManager timeManager;
     //string a, b; //development only
 
 
