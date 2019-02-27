@@ -57,6 +57,12 @@ Income FinanceManager::provideIncomeDetails() {
         dateConverted = timeManager.getDateAsInteger(dateToConvert);
         income.setDate(dateConverted);
         break;
+    case '2':
+        cout << "Enter date: ";
+        cin >> dateToConvert;
+        dateConverted = timeManager.getDateAsInteger(dateToConvert);
+        income.setDate(dateConverted);
+        break;
     }
 
     cout << "Enter amount (PLN): ";
