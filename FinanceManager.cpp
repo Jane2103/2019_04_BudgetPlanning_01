@@ -31,6 +31,8 @@ Income FinanceManager::provideIncomeDetails() {
     char selectOption;
 
     income.setUserId(LOGGED_USER_ID);
+    /*cout << "Last income id: " << incomesFile.getLastIncomeId() << endl;
+    system("pause");*/
     income.setIncomeId(incomesFile.getLastIncomeId() + 1);
 
     //cout << incomesFile.getLastIncomeId() + 1 << endl; // development only
@@ -50,24 +52,46 @@ Income FinanceManager::provideIncomeDetails() {
     cout << "Select option: ";
     cin >> selectOption;
 
-    switch (selectOption)
-    {
+    switch (selectOption) {
     case '1':
         dateToConvert = timeManager.getActualDateAsString();
         dateConverted = timeManager.getDateAsInteger(dateToConvert);
         income.setDate(dateConverted);
         break;
     case '2':
-        cout << "Enter date: ";
-        cin >> dateToConvert;
+        do {
+            cout << "Enter date (yyyy-mm-dd):";
+            cin >> dateToConvert;
+
+
+            if (timeManager.dayCorrect(dateToConvert) == false || timeManager.dateFormatValid(dateToConvert) == false)
+                cout << "Incorrect date" << endl;
+
+        } while (timeManager.dayCorrect(dateToConvert) == false || timeManager.dateFormatValid(dateToConvert) == false);
+
         dateConverted = timeManager.getDateAsInteger(dateToConvert);
         income.setDate(dateConverted);
         break;
     }
 
-    cout << "Enter amount (PLN): ";
-    cin >> amount;
+    do {
+        cout << "Enter amount (PLN): ";
+        cin >> amount;
+
+        if (!amountCorrect(amount))
+            cout << "Amount must be positive value" << endl;
+    } while (!amountCorrect(amount));
+
+
+
     income.setAmount(amount);
 
     return income;
+}
+
+bool FinanceManager::amountCorrect(int amount) {
+    if (amount <= 0)
+        return false;
+    else
+        return true;
 }

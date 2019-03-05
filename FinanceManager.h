@@ -34,6 +34,7 @@ public:
     void addIncome();
     void displayIncomes(); //development only
     Income provideIncomeDetails();
+    bool amountCorrect(int amount);
 };
 
 #endif

@@ -13,11 +13,14 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId) {
 
 
     bool idCorrect;
-
+    lastIncomeId = 0;
     while (xml.FindElem("incomeId")) {
         cout << "yes" << endl;
         lastIncomeId = atoi(xml.GetData().c_str());
+        /*cout << "Last income id: " << lastIncomeId << endl;
+        system("pause");*/
         income.setIncomeId(lastIncomeId);
+
 
         xml.FindElem("userId");
         income.setUserId(atoi(xml.GetData().c_str()));
@@ -39,8 +42,8 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId) {
         if (idCorrect)
             incomes.push_back(income);
     }
-    if (incomes.empty())
-        lastIncomeId = 0;
+    /*if (incomes.empty())
+        cout << "No incomes for logged user" << endl;*/
     return incomes;
 }
 
@@ -58,6 +61,8 @@ void IncomesFile::saveIncomeIntoFile(Income income) {
     xml.AddElem("date", income.getDate());
     xml.AddElem("item", income.getItem());
     xml.AddElem("amount", income.getAmount());
+
+    lastIncomeId++;
 
     xml.Save(INCOMES_FILE_NAME.c_str());
 }
