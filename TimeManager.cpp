@@ -75,30 +75,23 @@ bool TimeManager::dayCorrect(string dateAsString) {
     //cout << "day: " << maxDay << endl;
     //system("pause");
 
-    /*if (providedYear >= minYear && providedYear <= maxYear
-        && providedMonth >= minMonth && providedMonth <= maxMonth
-        && providedDay >= minDay && providedDay <= maxDay)
-        return true;
-    else
-        return false;*/
+    bool functionResult = false;
 
-    //to be refactored!
     if (providedYear >= minYear && providedYear <= maxYear) {
         if (providedYear < maxYear) {
             if (providedMonth >= minMonth && providedMonth <= 12
-            && providedDay >= minDay && providedDay <= 31)
-                return true;
+                && providedDay >= minDay && providedDay <= countDaysOfMonth(providedMonth, providedYear))
+                    functionResult = true;
         } else if (providedYear == maxYear) {
-            if (providedMonth < maxMonth) {
-                if (providedDay <= 31)
-                    return true;
-            } else if (providedMonth == maxMonth) {
-                if (providedDay <= maxDay)
-                    return true;
-            }
+            if (providedMonth < maxMonth && providedDay <= countDaysOfMonth(providedMonth, providedYear))
+                functionResult = true;
+            else if (providedMonth == maxMonth && providedDay <= maxDay)
+                functionResult = true;
         }
     } else
-        return false;
+        functionResult = false;
+
+    return functionResult;
 }
 
 int TimeManager::getDateAsInteger(string dateAsString) {
@@ -169,6 +162,33 @@ bool TimeManager::dayValid(string &dateToConvert) {
 
 bool TimeManager::separationMarkValid(string &dateToConvert) {
     if (dateToConvert[4] == pauseASCIICode && dateToConvert[7] == pauseASCIICode)
+        return true;
+    else
+        return false;
+}
+
+int TimeManager::countDaysOfMonth(int numberOfMonth, int year) // numberOfMonth to numer miesi¹ca od 1 do 12
+{
+    if (numberOfMonth < 8 && numberOfMonth % 2 != 0)
+        return 31;
+    else if (numberOfMonth < 8 && numberOfMonth % 2 == 0)
+    {
+        if (leapYear(year) && numberOfMonth == 2)
+            return 29;
+        else if (leapYear(year) == false && numberOfMonth == 2)
+            return 28;
+        else
+            return 30;
+    }
+    else if (numberOfMonth > 7 && numberOfMonth % 2 == 0)
+        return 31;
+    else
+        return 30;
+}
+
+bool TimeManager::leapYear(int year)
+{
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         return true;
     else
         return false;

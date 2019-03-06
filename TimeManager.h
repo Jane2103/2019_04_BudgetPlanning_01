@@ -35,6 +35,8 @@ public:
     bool monthValid(string &dateToConvert);
     bool dayValid(string &dateToConvert);
     bool separationMarkValid(string &dateToConvert);
+    int countDaysOfMonth(int numberOfMonth, int year);
+    bool leapYear(int year);
 };
 
 #endif
