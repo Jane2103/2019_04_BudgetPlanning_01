@@ -37,7 +37,7 @@ vector <Income> IncomesFile::loadIncomesFromFile(int loggedUserId) {
         income.setItem(xml.GetData());
 
         xml.FindElem("amount");
-        income.setAmount(atoi(xml.GetData().c_str())); //is that function (atoi) proper for float data type? TBD
+        income.setAmount(atof(xml.GetData().c_str())); //is that function (atoi) proper for float data type? TBD
 
         if (idCorrect)
             incomes.push_back(income);

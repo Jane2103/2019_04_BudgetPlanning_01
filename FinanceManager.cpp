@@ -13,8 +13,10 @@ void FinanceManager::displayIncomes() {
 
     if (!incomes.empty()) {
         vector <Income> :: iterator it;
-        for (it = incomes.begin(); it != incomes.end(); it++)
+        for (it = incomes.begin(); it != incomes.end(); it++) {
             cout << it -> getItem() << endl;
+            cout << it -> getAmount() << endl;
+        }
     }
     else
         cout << "No incomes" << endl;
@@ -118,3 +120,12 @@ bool FinanceManager::amountCorrect(float amount) {
     else
         return true;
 }
+
+string FinanceManager::convertFloatToStr(float numberToConvert) {
+    stringstream floatToStr;
+    string str;
+    floatToStr << numberToConvert;
+    floatToStr >> str;
+    floatToStr.clear();
+    return str;
+} //development only

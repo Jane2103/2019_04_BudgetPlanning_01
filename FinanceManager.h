@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
+#include <cstdlib> //development only
 
 #include "Income.h"
 #include "Expense.h"
@@ -35,6 +36,7 @@ public:
     void displayIncomes(); //development only
     Income provideIncomeDetails();
     bool amountCorrect(float amount);
+    string convertFloatToStr(float numberToConvert); //development only
 };
 
 #endif

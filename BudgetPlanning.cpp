@@ -64,8 +64,8 @@ void BudgetPlanning::displayLoggedUserMenu() {
     //system("pause");
     switch (userChoice) {
     case '1':
-        financeManager -> addIncome();
-        //financeManager -> displayIncomes(); //development only
+        //financeManager -> addIncome();
+        financeManager -> displayIncomes(); //development only
         break;
     case '2':
         cout << "Not implemented yet" << endl;
