@@ -27,7 +27,12 @@ Income FinanceManager::provideIncomeDetails() {
     string dateToConvert;
     int dateConverted;
     string item;
-    float amount;
+    string amountToConvert;
+    string comma = ",";
+    string point = ".";
+    int commaIndex;
+    float amountConverted;
+    //float amount;
     char selectOption;
 
     income.setUserId(LOGGED_USER_ID);
@@ -74,22 +79,40 @@ Income FinanceManager::provideIncomeDetails() {
         break;
     }
 
-    do {
+    /*do {
         cout << "Enter amount (PLN): ";
         cin >> amount;
 
         if (!amountCorrect(amount))
             cout << "Amount must be positive value" << endl;
-    } while (!amountCorrect(amount));
+    } while (!amountCorrect(amount));*/
+
+    do {
+        cout << "Enter amount (PLN): ";
+        cin >> amountToConvert;
+
+        commaIndex = amountToConvert.find(comma);
+        if (commaIndex > 0)
+            amountToConvert.replace(commaIndex, 1, point);
+
+        amountConverted = atof(amountToConvert.c_str());
+        /*cout << amountConverted << endl;
+        system("pause");*/
+
+        if (!amountCorrect(amountConverted))
+            cout << "Amount must be positive value" << endl;
+
+    } while (!amountCorrect(amountConverted));
 
 
 
-    income.setAmount(amount);
+    //income.setAmount(amount);
+    income.setAmount(amountConverted);
 
     return income;
 }
 
-bool FinanceManager::amountCorrect(int amount) {
+bool FinanceManager::amountCorrect(float amount) {
     if (amount <= 0)
         return false;
     else

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 #include "CMarkup/Markup.h"
 #include "Income.h"
@@ -18,6 +19,7 @@ public:
     vector <Income> loadIncomesFromFile(int loggedUserId);
     int getLastIncomeId();
     void saveIncomeIntoFile(Income income);
+    string convertFloatToStr(float numberToConvert);
 };
 
 #endif

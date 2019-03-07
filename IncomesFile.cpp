@@ -60,9 +60,18 @@ void IncomesFile::saveIncomeIntoFile(Income income) {
     xml.AddElem("userId", income.getUserId());
     xml.AddElem("date", income.getDate());
     xml.AddElem("item", income.getItem());
-    xml.AddElem("amount", income.getAmount());
+    xml.AddElem("amount", convertFloatToStr(income.getAmount()));
 
     lastIncomeId++;
 
     xml.Save(INCOMES_FILE_NAME.c_str());
+}
+
+string IncomesFile::convertFloatToStr(float numberToConvert) {
+    stringstream floatToStr;
+    string str;
+    floatToStr << numberToConvert;
+    floatToStr >> str;
+    floatToStr.clear();
+    return str;
 }
