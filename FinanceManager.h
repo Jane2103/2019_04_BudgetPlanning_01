@@ -3,21 +3,40 @@
 
 #include <iostream>
 #include <vector>
+#include <time.h>
+#include <cstdlib> //development only
 
 #include "Income.h"
 #include "Expense.h"
+#include "IncomesFile.h"
+#include "ExpensesFile.h"
+#include "TimeManager.h"
 
 using namespace std;
 
 class FinanceManager {
     vector <Income> incomes;
+    IncomesFile incomesFile;
+
     vector <Expense> expenses;
+    ExpensesFile expensesFile;
+
     const int LOGGED_USER_ID;
-    string a, b; //development only
+    TimeManager timeManager;
+    //string a, b; //development only
+
 
 public:
     FinanceManager(string incomesFileName, string expensesFileName, int loggedUserId) :
-        a(incomesFileName), b(expensesFileName), LOGGED_USER_ID(loggedUserId) {};
+        incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserId) {
+        incomes = incomesFile.loadIncomesFromFile(LOGGED_USER_ID);
+
+    };
+    void addIncome();
+    void displayIncomes(); //development only
+    Income provideIncomeDetails();
+    bool amountCorrect(float amount);
+    string convertFloatToStr(float numberToConvert); //development only
 };
 
 #endif

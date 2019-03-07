@@ -64,7 +64,8 @@ void BudgetPlanning::displayLoggedUserMenu() {
     //system("pause");
     switch (userChoice) {
     case '1':
-        cout << "Not implemented yet" << endl;
+        //financeManager -> addIncome();
+        financeManager -> displayIncomes(); //development only
         break;
     case '2':
         cout << "Not implemented yet" << endl;
@@ -91,7 +92,7 @@ void BudgetPlanning::logOnUser() {
     userManager.logOnUser();
     if (userManager.userLogged()) {
         //to implement
-        financeManager = new FinanceManager("incomes.xml", "expenses.xml", userManager.getLoggedUserId());
+        financeManager = new FinanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedUserId());
         while (userManager.userLogged())
             displayLoggedUserMenu();
     }
