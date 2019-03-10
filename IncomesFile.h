@@ -8,6 +8,7 @@
 #include "CMarkup/Markup.h"
 #include "Income.h"
 
+
 using namespace std;
 
 class IncomesFile {

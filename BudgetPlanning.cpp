@@ -64,11 +64,11 @@ void BudgetPlanning::displayLoggedUserMenu() {
     //system("pause");
     switch (userChoice) {
     case '1':
-        //financeManager -> addIncome();
+        ///financeManager -> addIncome();
         financeManager -> displayIncomes(); //development only
         break;
     case '2':
-        cout << "Not implemented yet" << endl;
+        financeManager -> addExpense();
         break;
     case '3':
         cout << "Not implemented yet" << endl;
