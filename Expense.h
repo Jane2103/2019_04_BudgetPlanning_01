@@ -6,8 +6,24 @@
 using namespace std;
 
 class Expense {
+    int expenseId;
+    int userId;
+    int date;
+    string item;
+    float amount;
 
 public:
+    void setExpenseId(int expenseId);
+    void setUserId(int userId);
+    void setDate(int date);
+    void setItem(string item);
+    void setAmount(float amount);
+
+    int getExpenseId();
+    int getUserId();
+    int getDate();
+    string getItem();
+    float getAmount();
 
 };
 

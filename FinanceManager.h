@@ -30,11 +30,14 @@ public:
     FinanceManager(string incomesFileName, string expensesFileName, int loggedUserId) :
         incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserId) {
         incomes = incomesFile.loadIncomesFromFile(LOGGED_USER_ID);
+        expenses = expensesFile.loadExpensesFromFile(LOGGED_USER_ID);
 
     };
     void addIncome();
+    void addExpense();
     void displayIncomes(); //development only
     Income provideIncomeDetails();
+    Expense provideExpenseDetails();
     bool amountCorrect(float amount);
     string convertFloatToStr(float numberToConvert); //development only
 };
