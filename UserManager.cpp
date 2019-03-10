@@ -55,19 +55,6 @@ bool UserManager::userLoginExists(string login) {
     return false;
 }
 
-//development only!
-void UserManager::displayUsers() {
-    vector <User> :: iterator it;
-    for (it = users.begin(); it != users.end(); it++) {
-        cout << "Id: " << it -> getUserId() << endl;
-        cout << "Name: " << it -> getName() << endl;
-        cout << "Surname: " << it -> getSurname() << endl;
-        cout << "Login: " << it -> getLogin() << endl;
-        cout << "Password: " << it -> getPassword() << endl;
-        cout << endl;
-    }
-}
-
 int UserManager::getLoggedUserId() {
     return loggedUserId;
 }

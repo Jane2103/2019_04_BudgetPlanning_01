@@ -35,10 +35,6 @@ void BudgetPlanning::registerUser() {
     userManager.registerUser();
 }
 
-void BudgetPlanning::displayUsers() {
-    userManager.displayUsers();
-}
-
 void BudgetPlanning::displayLoggedUserMenu() {
     char userChoice;
     system("cls");

@@ -7,6 +7,7 @@
 
 #include "CMarkup/Markup.h"
 #include "Income.h"
+#include "AuxiliaryMethods.h"
 
 
 using namespace std;
@@ -20,7 +21,6 @@ public:
     vector <Income> loadIncomesFromFile(int loggedUserId);
     int getLastIncomeId();
     void saveIncomeIntoFile(Income income);
-    string convertFloatToStr(float numberToConvert);
 };
 
 #endif

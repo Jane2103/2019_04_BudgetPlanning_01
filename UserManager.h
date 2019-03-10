@@ -27,10 +27,8 @@ public:
     void registerUser();
     void logOnUser();
     void logOutUser();
-    bool userLoggedIn();
     int getLoggedUserId();
     void changePassword();
-    void displayUsers(); //development only
     bool userLogged();
     string getUserName();
     string getUserSurname();

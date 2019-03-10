@@ -22,6 +22,7 @@ class FinanceManager {
     TimeManager timeManager;
 
     void displayIncomes(int startDate, int endDate);
+    void displayExpenses(int startDate, int endDate);
     Income provideIncomeDetails();
     Expense provideExpenseDetails();
     bool amountCorrect(float amount);
@@ -39,7 +40,6 @@ public:
     void addExpense();
     void displayCurrentMonthBalance();
     void displayPreviousMonthBalance();
-    void displayExpenses(int startDate, int endDate);
     void displayCustomPeriodBalance();
 };
 

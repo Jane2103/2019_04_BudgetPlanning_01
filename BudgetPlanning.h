@@ -27,7 +27,6 @@ public:
     void changePassword();
     void displayStartMenu();
     void displayLoggedUserMenu();
-    void displayUsers(); //development only
 };
 
 #endif
