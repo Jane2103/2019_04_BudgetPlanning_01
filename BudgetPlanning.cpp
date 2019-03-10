@@ -74,7 +74,7 @@ void BudgetPlanning::displayLoggedUserMenu() {
         financeManager -> displayCurrentMonthBalance();
         break;
     case '4':
-        cout << "Not implemented yet" << endl;
+        financeManager -> displayPreviousMonthBalance();
         break;
     case '5':
         cout << "Not implemented yet" << endl;

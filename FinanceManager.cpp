@@ -272,6 +272,41 @@ void FinanceManager::displayCurrentMonthBalance() {
 
 }
 
+void FinanceManager::displayPreviousMonthBalance() {
+    int startDate = timeManager.startDateOfPreviousMonth();
+    int endDate = timeManager.endDateOfPreviousMonth();
+
+    sort(incomes.begin(), incomes.end());
+    cout << "Incomes:" << endl;
+    displayIncomes(startDate, endDate);
+    cout << endl;
+
+    sort(expenses.begin(), expenses.end());
+    cout << "Expenses: " << endl;
+    displayExpenses(startDate, endDate);
+    cout << endl;
+
+    float incomesSum = 0.0;
+    int incomesSize = incomes.size();
+    for (int i = 0; i < incomesSize; i++) {
+        if (incomes[i].getDate() >= startDate && incomes[i].getDate() <= endDate)
+            incomesSum += incomes[i].getAmount();
+    }
+
+    float expensesSum = 0.0;
+    int expensesSize = expenses.size();
+    for (int i = 0; i < expensesSize; i++) {
+        if (expenses[i].getDate() >= startDate && expenses[i].getDate() <= endDate)
+            expensesSum += expenses[i].getAmount();
+    }
+
+    cout << "Sum of INCOMES: " << incomesSum << endl;
+    cout << "Sum of EXPENSES: " << expensesSum << endl;
+    cout << "Balance: " << incomesSum - expensesSum << endl;
+
+    system("pause");
+}
+
 string FinanceManager::intToStr(int number) {
     ostringstream ss;
     ss << number;

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
+#include <sstream>
 
 #define DATE_FORMAT_SIZE 11
 
@@ -37,6 +38,9 @@ public:
     bool separationMarkValid(string &dateToConvert);
     int countDaysOfMonth(int numberOfMonth, int year);
     bool leapYear(int year);
+    int startDateOfPreviousMonth();
+    int endDateOfPreviousMonth();
+    string intToStr(int number);
 };
 
 #endif

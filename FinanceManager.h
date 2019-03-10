@@ -43,6 +43,7 @@ public:
     bool amountCorrect(float amount);
     string convertFloatToStr(float numberToConvert); //development only
     void displayCurrentMonthBalance();
+    void displayPreviousMonthBalance();
     string convertDateToValidDateFormat(int dateAsInteger);
     string intToStr(int number);
     void displayExpenses(int startDate, int endDate);
