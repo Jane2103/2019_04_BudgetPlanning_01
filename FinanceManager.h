@@ -42,6 +42,8 @@ public:
     bool amountCorrect(float amount);
     string convertFloatToStr(float numberToConvert); //development only
     void displayCurrentMonthBalance();
+    string convertDateToValidDateFormat(int dateAsInteger);
+    string intToStr(int number);
 };
 
 

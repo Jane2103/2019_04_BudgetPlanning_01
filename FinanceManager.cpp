@@ -25,7 +25,7 @@ void FinanceManager::displayIncomes() {
         for (it = incomes.begin(); it != incomes.end(); it++) {
             cout << "Item: " << it -> getItem() << endl;
             cout << "Amount: " << it -> getAmount() << endl;
-            cout << "Date: " << it -> getDate() << endl;
+            cout << "Date: " << convertDateToValidDateFormat(it -> getDate()) << endl;
             cout << endl;
         }
     }
@@ -218,4 +218,22 @@ void FinanceManager::displayCurrentMonthBalance() {
     displayIncomes();
     cout << endl;
 
+}
+
+string FinanceManager::intToStr(int number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+string FinanceManager::convertDateToValidDateFormat(int dateAsInteger) {
+    //string rawDateFormat = intToStr(dateAsInteger);
+    string pause = "-";
+    string yyyy_mm_dd_dateFormat = intToStr(dateAsInteger);
+    int firstPauseIndex = 4;
+    int secondPauseIndex = 7;
+    yyyy_mm_dd_dateFormat.insert(firstPauseIndex, pause);
+    yyyy_mm_dd_dateFormat.insert(secondPauseIndex, pause);
+    return yyyy_mm_dd_dateFormat;
 }
