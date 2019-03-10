@@ -272,6 +272,38 @@ void FinanceManager::displayCurrentMonthBalance() {
 
 }
 
+void FinanceManager::displayPreviousMonthBalance() {
+    //string actualDate = timeManager.getActualDateAsString();
+    string actualDate = "2019-01-15";
+    int yearOfPreviousMonth;
+    int previousMonth;
+    if (timeManager.month(actualDate) == 1) {
+        yearOfPreviousMonth = timeManager.year(actualDate) - 1;
+        previousMonth = 12;
+    } else {
+        yearOfPreviousMonth = timeManager.year(actualDate);
+        previousMonth = timeManager.month(actualDate) - 1;
+    }
+
+    string startDate;
+    string endDate;
+    string pause = "-";
+    string zero = "0";
+
+    if (previousMonth < 10) {
+        startDate = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + zero + intToStr(1);
+        endDate = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + intToStr(timeManager.countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+    } else {
+        startDate = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + zero + intToStr(1);
+        endDate = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + intToStr(timeManager.countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+    }
+
+    cout << "start date: " << startDate << endl;
+    cout << "end date: " << endDate << endl;
+    system("pause");
+
+}
+
 string FinanceManager::intToStr(int number) {
     ostringstream ss;
     ss << number;
