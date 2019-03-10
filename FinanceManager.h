@@ -5,6 +5,7 @@
 #include <vector>
 #include <time.h>
 #include <cstdlib> //development only
+#include <algorithm>
 
 #include "Income.h"
 #include "Expense.h"
@@ -35,11 +36,18 @@ public:
     };
     void addIncome();
     void addExpense();
-    void displayIncomes(); //development only
+    void displayIncomes(int startDate, int endDate); //development only
+    void displayExpenses();
     Income provideIncomeDetails();
     Expense provideExpenseDetails();
     bool amountCorrect(float amount);
     string convertFloatToStr(float numberToConvert); //development only
+    void displayCurrentMonthBalance();
+    string convertDateToValidDateFormat(int dateAsInteger);
+    string intToStr(int number);
+    void displayExpenses(int startDate, int endDate);
 };
+
+
 
 #endif
