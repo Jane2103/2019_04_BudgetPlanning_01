@@ -77,7 +77,7 @@ void BudgetPlanning::displayLoggedUserMenu() {
         financeManager -> displayPreviousMonthBalance();
         break;
     case '5':
-        cout << "Not implemented yet" << endl;
+        financeManager -> displayCustomPeriodBalance();
         break;
     case '6':
         userManager.changePassword();
