@@ -44,7 +44,6 @@ void BudgetPlanning::displayLoggedUserMenu() {
     system("cls");
 
     cout << "Logged user: " << userManager.getUserName() << " " << userManager.getUserSurname() << endl;
-    cout << "Logged user id: " << userManager.getLoggedUserId() << endl; //development only
 
     cout << "------------------------------" << endl;
     cout << "(1) Add income" << endl;
@@ -61,11 +60,9 @@ void BudgetPlanning::displayLoggedUserMenu() {
 
     cout << "------------------------------" << endl;
 
-    //system("pause");
     switch (userChoice) {
     case '1':
         financeManager -> addIncome();
-        //financeManager -> displayIncomes(); //development only
         break;
     case '2':
         financeManager -> addExpense();
@@ -91,7 +88,6 @@ void BudgetPlanning::displayLoggedUserMenu() {
 void BudgetPlanning::logOnUser() {
     userManager.logOnUser();
     if (userManager.userLogged()) {
-        //to implement
         financeManager = new FinanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedUserId());
         while (userManager.userLogged())
             displayLoggedUserMenu();

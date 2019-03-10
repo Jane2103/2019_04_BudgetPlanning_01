@@ -56,30 +56,18 @@ bool TimeManager::dayCorrect(string dateAsString) {
     int maxYear, maxMonth, maxDay;
 
     providedYear = year(dateAsString);
-    /*cout << "Provided y: " << providedYear << endl;
-    system("pause");*/
     providedMonth = month(dateAsString);
-    //cout << "Provided m: " << providedMonth << endl;
-    //system("pause");
     providedDay = day(dateAsString);
-    //cout << "Provided d: " << providedDay << endl;
-    //system("pause");
 
     maxYear = year(getActualDateAsString());
-    //cout << "year: " << maxYear << endl;
-    //system("pause");
     maxMonth = month(getActualDateAsString());
-    //cout << "month: " << maxMonth << endl;
-    //system("pause");
     maxDay = day(getActualDateAsString());
-    //cout << "day: " << maxDay << endl;
-    //system("pause");
 
     bool functionResult = false;
 
     if (providedYear >= minYear && providedYear <= maxYear) {
         if (providedYear < maxYear) {
-            if (providedMonth >= minMonth && providedMonth <= 12
+            if (providedMonth >= minMonth && providedMonth <= DECEMBER
                 && providedDay >= minDay && providedDay <= countDaysOfMonth(providedMonth, providedYear))
                     functionResult = true;
         } else if (providedYear == maxYear) {
@@ -167,11 +155,11 @@ bool TimeManager::separationMarkValid(string &dateToConvert) {
         return false;
 }
 
-int TimeManager::countDaysOfMonth(int numberOfMonth, int year) // numberOfMonth to numer miesi¹ca od 1 do 12
+int TimeManager::countDaysOfMonth(int numberOfMonth, int year) // numberOfMonth to numer miesiaca od 1 do 12
 {
-    if (numberOfMonth < 8 && numberOfMonth % 2 != 0)
+    if (numberOfMonth < AUGUST && numberOfMonth % 2 != 0)
         return 31;
-    else if (numberOfMonth < 8 && numberOfMonth % 2 == 0)
+    else if (numberOfMonth < AUGUST && numberOfMonth % 2 == 0)
     {
         if (leapYear(year) && numberOfMonth == 2)
             return 29;
@@ -202,18 +190,18 @@ int TimeManager::startDateOfPreviousMonth() {
     int yearOfPreviousMonth;
     int previousMonth;
 
-    if (month(actualDate) == 1) {
+    if (month(actualDate) == JANUARY) {
         yearOfPreviousMonth = year(actualDate) - 1;
-        previousMonth = 12;
+        previousMonth = DECEMBER;
     } else {
         yearOfPreviousMonth = year(actualDate);
         previousMonth = month(actualDate) - 1;
     }
 
-    if (previousMonth < 10)
-        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + zero + intToStr(1);
+    if (previousMonth < OCTOBER)
+        startDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + zero + AuxiliaryMethods::intToStr(previousMonth) + pause + zero + AuxiliaryMethods::intToStr(1);
     else
-        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + zero + intToStr(1);
+        startDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + AuxiliaryMethods::intToStr(previousMonth) + pause + zero + AuxiliaryMethods::intToStr(1);
 
     return getDateAsInteger(startDateToConvert);
 }
@@ -226,25 +214,28 @@ int TimeManager::endDateOfPreviousMonth() {
     int yearOfPreviousMonth;
     int previousMonth;
 
-    if (month(actualDate) == 1) {
+    if (month(actualDate) == JANUARY) {
         yearOfPreviousMonth = year(actualDate) - 1;
-        previousMonth = 12;
+        previousMonth = DECEMBER;
     } else {
         yearOfPreviousMonth = year(actualDate);
         previousMonth = month(actualDate) - 1;
     }
 
-    if (previousMonth < 10)
-        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+    if (previousMonth < OCTOBER)
+        endDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + zero + AuxiliaryMethods::intToStr(previousMonth) + pause + AuxiliaryMethods::intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
     else
-        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + zero + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+        endDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + AuxiliaryMethods::intToStr(previousMonth) + zero + AuxiliaryMethods::intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
 
     return getDateAsInteger(endDateToConvert);
 }
 
-string TimeManager::intToStr(int number) {
-    ostringstream ss;
-    ss << number;
-    string str = ss.str();
-    return str;
+string TimeManager::convertDateToValidDateFormat(int dateAsInteger) {
+    string pause = "-";
+    string yyyy_mm_dd_dateFormat = AuxiliaryMethods::intToStr(dateAsInteger);
+    int firstPauseIndex = 4;
+    int secondPauseIndex = 7;
+    yyyy_mm_dd_dateFormat.insert(firstPauseIndex, pause);
+    yyyy_mm_dd_dateFormat.insert(secondPauseIndex, pause);
+    return yyyy_mm_dd_dateFormat;
 }
