@@ -193,3 +193,58 @@ bool TimeManager::leapYear(int year)
     else
         return false;
 }
+
+int TimeManager::startDateOfPreviousMonth() {
+    string actualDate = getActualDateAsString();
+    string startDateToConvert;
+    string pause = "-";
+    string zero = "0";
+    int yearOfPreviousMonth;
+    int previousMonth;
+
+    if (month(actualDate) == 1) {
+        yearOfPreviousMonth = year(actualDate) - 1;
+        previousMonth = 12;
+    } else {
+        yearOfPreviousMonth = year(actualDate);
+        previousMonth = month(actualDate) - 1;
+    }
+
+    if (previousMonth < 10)
+        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + zero + intToStr(1);
+    else
+        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + zero + intToStr(1);
+
+    return getDateAsInteger(startDateToConvert);
+}
+
+int TimeManager::endDateOfPreviousMonth() {
+    string actualDate = getActualDateAsString();
+    string endDateToConvert;
+    string pause = "-";
+    string zero = "0";
+    int yearOfPreviousMonth;
+    int previousMonth;
+
+    if (month(actualDate) == 1) {
+        yearOfPreviousMonth = year(actualDate) - 1;
+        previousMonth = 12;
+    } else {
+        yearOfPreviousMonth = year(actualDate);
+        previousMonth = month(actualDate) - 1;
+    }
+
+    if (previousMonth < 10)
+        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+    else
+        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + zero + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+
+    return getDateAsInteger(endDateToConvert);
+}
+
+string TimeManager::intToStr(int number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}

@@ -273,35 +273,38 @@ void FinanceManager::displayCurrentMonthBalance() {
 }
 
 void FinanceManager::displayPreviousMonthBalance() {
-    //string actualDate = timeManager.getActualDateAsString();
-    string actualDate = "2019-01-15";
-    int yearOfPreviousMonth;
-    int previousMonth;
-    if (timeManager.month(actualDate) == 1) {
-        yearOfPreviousMonth = timeManager.year(actualDate) - 1;
-        previousMonth = 12;
-    } else {
-        yearOfPreviousMonth = timeManager.year(actualDate);
-        previousMonth = timeManager.month(actualDate) - 1;
+    int startDate = timeManager.startDateOfPreviousMonth();
+    int endDate = timeManager.endDateOfPreviousMonth();
+
+    sort(incomes.begin(), incomes.end());
+    cout << "Incomes:" << endl;
+    displayIncomes(startDate, endDate);
+    cout << endl;
+
+    sort(expenses.begin(), expenses.end());
+    cout << "Expenses: " << endl;
+    displayExpenses(startDate, endDate);
+    cout << endl;
+
+    float incomesSum = 0.0;
+    int incomesSize = incomes.size();
+    for (int i = 0; i < incomesSize; i++) {
+        if (incomes[i].getDate() >= startDate && incomes[i].getDate() <= endDate)
+            incomesSum += incomes[i].getAmount();
     }
 
-    string startDate;
-    string endDate;
-    string pause = "-";
-    string zero = "0";
-
-    if (previousMonth < 10) {
-        startDate = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + zero + intToStr(1);
-        endDate = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + intToStr(timeManager.countDaysOfMonth(previousMonth, yearOfPreviousMonth));
-    } else {
-        startDate = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + zero + intToStr(1);
-        endDate = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + intToStr(timeManager.countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+    float expensesSum = 0.0;
+    int expensesSize = expenses.size();
+    for (int i = 0; i < expensesSize; i++) {
+        if (expenses[i].getDate() >= startDate && expenses[i].getDate() <= endDate)
+            expensesSum += expenses[i].getAmount();
     }
 
-    cout << "start date: " << startDate << endl;
-    cout << "end date: " << endDate << endl;
+    cout << "Sum of INCOMES: " << incomesSum << endl;
+    cout << "Sum of EXPENSES: " << expensesSum << endl;
+    cout << "Balance: " << incomesSum - expensesSum << endl;
+
     system("pause");
-
 }
 
 string FinanceManager::intToStr(int number) {
