@@ -324,3 +324,69 @@ string FinanceManager::convertDateToValidDateFormat(int dateAsInteger) {
     yyyy_mm_dd_dateFormat.insert(secondPauseIndex, pause);
     return yyyy_mm_dd_dateFormat;
 }
+
+void FinanceManager::displayCustomPeriodBalance() {
+    string startDate;
+    string endDate;
+    int startDateConverted;
+    int endDateConverted;
+
+    do {
+        do {
+            cout << "Enter start date (yyyy-mm-dd):";
+            cin >> startDate;
+
+
+            if (timeManager.dayCorrect(startDate) == false || timeManager.dateFormatValid(startDate) == false)
+                cout << "Incorrect date" << endl;
+
+        } while (timeManager.dayCorrect(startDate) == false || timeManager.dateFormatValid(startDate) == false);
+
+        do {
+            cout << "Enter end date (yyyy-mm-dd):";
+            cin >> endDate;
+
+
+            if (timeManager.dayCorrect(endDate) == false || timeManager.dateFormatValid(endDate) == false)
+                cout << "Incorrect date" << endl;
+
+        } while (timeManager.dayCorrect(endDate) == false || timeManager.dateFormatValid(endDate) == false);
+
+        startDateConverted = timeManager.getDateAsInteger(startDate);
+        endDateConverted = timeManager.getDateAsInteger(endDate);
+
+        if (startDateConverted > endDateConverted)
+            cout << "Start date must be defined as earlier than end date" << endl;
+    } while (startDateConverted > endDateConverted);
+
+    sort(incomes.begin(), incomes.end());
+    cout << "Incomes:" << endl;
+    displayIncomes(startDateConverted, endDateConverted);
+    cout << endl;
+
+    sort(expenses.begin(), expenses.end());
+    cout << "Expenses: " << endl;
+    displayExpenses(startDateConverted, endDateConverted);
+    cout << endl;
+
+    float incomesSum = 0.0;
+    int incomesSize = incomes.size();
+    for (int i = 0; i < incomesSize; i++) {
+        if (incomes[i].getDate() >= startDateConverted && incomes[i].getDate() <= endDateConverted)
+            incomesSum += incomes[i].getAmount();
+    }
+
+    float expensesSum = 0.0;
+    int expensesSize = expenses.size();
+    for (int i = 0; i < expensesSize; i++) {
+        if (expenses[i].getDate() >= startDateConverted && expenses[i].getDate() <= endDateConverted)
+            expensesSum += expenses[i].getAmount();
+    }
+
+    cout << "Sum of INCOMES: " << incomesSum << endl;
+    cout << "Sum of EXPENSES: " << expensesSum << endl;
+    cout << "Balance: " << incomesSum - expensesSum << endl;
+
+    system("pause");
+
+}
