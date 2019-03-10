@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <sstream>
 
+#include "AuxiliaryMethods.h"
+
 #define DATE_FORMAT_SIZE 11
 
 
@@ -40,7 +42,8 @@ public:
     bool leapYear(int year);
     int startDateOfPreviousMonth();
     int endDateOfPreviousMonth();
-    string intToStr(int number);
+    //string intToStr(int number);
+    string convertDateToValidDateFormat(int dateAsInteger);
 };
 
 #endif

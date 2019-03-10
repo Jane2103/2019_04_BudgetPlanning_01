@@ -211,9 +211,9 @@ int TimeManager::startDateOfPreviousMonth() {
     }
 
     if (previousMonth < 10)
-        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + zero + intToStr(1);
+        startDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + zero + AuxiliaryMethods::intToStr(previousMonth) + pause + zero + AuxiliaryMethods::intToStr(1);
     else
-        startDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + pause + zero + intToStr(1);
+        startDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + AuxiliaryMethods::intToStr(previousMonth) + pause + zero + AuxiliaryMethods::intToStr(1);
 
     return getDateAsInteger(startDateToConvert);
 }
@@ -235,16 +235,26 @@ int TimeManager::endDateOfPreviousMonth() {
     }
 
     if (previousMonth < 10)
-        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + zero + intToStr(previousMonth) + pause + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+        endDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + zero + AuxiliaryMethods::intToStr(previousMonth) + pause + AuxiliaryMethods::intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
     else
-        endDateToConvert = intToStr(yearOfPreviousMonth) + pause + intToStr(previousMonth) + zero + intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
+        endDateToConvert = AuxiliaryMethods::intToStr(yearOfPreviousMonth) + pause + AuxiliaryMethods::intToStr(previousMonth) + zero + AuxiliaryMethods::intToStr(countDaysOfMonth(previousMonth, yearOfPreviousMonth));
 
     return getDateAsInteger(endDateToConvert);
 }
 
-string TimeManager::intToStr(int number) {
+/*string TimeManager::intToStr(int number) {
     ostringstream ss;
     ss << number;
     string str = ss.str();
     return str;
+}*/
+
+string TimeManager::convertDateToValidDateFormat(int dateAsInteger) {
+    string pause = "-";
+    string yyyy_mm_dd_dateFormat = AuxiliaryMethods::intToStr(dateAsInteger);
+    int firstPauseIndex = 4;
+    int secondPauseIndex = 7;
+    yyyy_mm_dd_dateFormat.insert(firstPauseIndex, pause);
+    yyyy_mm_dd_dateFormat.insert(secondPauseIndex, pause);
+    return yyyy_mm_dd_dateFormat;
 }

@@ -61,11 +61,9 @@ void BudgetPlanning::displayLoggedUserMenu() {
 
     cout << "------------------------------" << endl;
 
-    //system("pause");
     switch (userChoice) {
     case '1':
         financeManager -> addIncome();
-        //financeManager -> displayIncomes(); //development only
         break;
     case '2':
         financeManager -> addExpense();
@@ -91,7 +89,6 @@ void BudgetPlanning::displayLoggedUserMenu() {
 void BudgetPlanning::logOnUser() {
     userManager.logOnUser();
     if (userManager.userLogged()) {
-        //to implement
         financeManager = new FinanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedUserId());
         while (userManager.userLogged())
             displayLoggedUserMenu();
