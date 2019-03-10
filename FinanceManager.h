@@ -5,6 +5,7 @@
 #include <vector>
 #include <time.h>
 #include <cstdlib> //development only
+#include <algorithm>
 
 #include "Income.h"
 #include "Expense.h"
@@ -40,6 +41,9 @@ public:
     Expense provideExpenseDetails();
     bool amountCorrect(float amount);
     string convertFloatToStr(float numberToConvert); //development only
+    void displayCurrentMonthBalance();
 };
+
+
 
 #endif

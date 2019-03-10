@@ -24,6 +24,11 @@ public:
     int getDate();
     string getItem();
     float getAmount();
+
+    //code below enables to sort Incomes by date
+    bool operator < (const Income &inc) const {
+        return (date < inc.date);
+    }
 };
 
 #endif

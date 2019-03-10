@@ -23,8 +23,10 @@ void FinanceManager::displayIncomes() {
     if (!incomes.empty()) {
         vector <Income> :: iterator it;
         for (it = incomes.begin(); it != incomes.end(); it++) {
-            cout << it -> getItem() << endl;
-            cout << it -> getAmount() << endl;
+            cout << "Item: " << it -> getItem() << endl;
+            cout << "Amount: " << it -> getAmount() << endl;
+            cout << "Date: " << it -> getDate() << endl;
+            cout << endl;
         }
     }
     else
@@ -208,3 +210,12 @@ string FinanceManager::convertFloatToStr(float numberToConvert) {
     floatToStr.clear();
     return str;
 } //development only
+
+
+
+void FinanceManager::displayCurrentMonthBalance() {
+    sort(incomes.begin(), incomes.end());
+    displayIncomes();
+    cout << endl;
+
+}
