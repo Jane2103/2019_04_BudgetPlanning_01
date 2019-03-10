@@ -18,21 +18,38 @@ void FinanceManager::addExpense() {
     system("pause");
 }
 
-void FinanceManager::displayIncomes() {
+void FinanceManager::displayIncomes(int startDate, int endDate) {
 
     if (!incomes.empty()) {
         vector <Income> :: iterator it;
         for (it = incomes.begin(); it != incomes.end(); it++) {
-            cout << "Item: " << it -> getItem() << endl;
-            cout << "Amount: " << it -> getAmount() << endl;
-            cout << "Date: " << convertDateToValidDateFormat(it -> getDate()) << endl;
-            cout << endl;
+            if (it -> getDate() >= startDate && it -> getDate() <= endDate) {
+                cout << "Item: " << it -> getItem() << endl;
+                cout << "Amount: " << it -> getAmount() << endl;
+                cout << "Date: " << convertDateToValidDateFormat(it -> getDate()) << endl;
+                cout << endl;
+            }
         }
-    }
-    else
+    } else
         cout << "No incomes" << endl;
     system("pause");
+}
 
+void FinanceManager::displayExpenses(int startDate, int endDate) {
+
+    if (!expenses.empty()) {
+        vector <Expense> :: iterator it;
+        for (it = expenses.begin(); it != expenses.end(); it++) {
+            if (it -> getDate() >= startDate && it -> getDate() <= endDate) {
+                cout << "Item: " << it -> getItem() << endl;
+                cout << "Amount: " << it -> getAmount() << endl;
+                cout << "Date: " << convertDateToValidDateFormat(it -> getDate()) << endl;
+                cout << endl;
+            }
+        }
+    } else
+        cout << "No expenses" << endl;
+    system("pause");
 }
 
 Income FinanceManager::provideIncomeDetails() {
@@ -214,9 +231,44 @@ string FinanceManager::convertFloatToStr(float numberToConvert) {
 
 
 void FinanceManager::displayCurrentMonthBalance() {
+    int endDate = timeManager.getDateAsInteger(timeManager.getActualDateAsString());
+    //cout << "end date: " << endDate << endl;
+    //system("pause");
+    int startDate = timeManager.getDateAsInteger(timeManager.getActualDateAsString()) - timeManager.day(timeManager.getActualDateAsString()) + 1;
+    //cout << "start date: " << startDate << endl;
+    //system("pause");
+    vector <Income> :: iterator iti;
+    vector <Expense> :: iterator ite;
+
     sort(incomes.begin(), incomes.end());
-    displayIncomes();
+    cout << "Incomes:" << endl;
+    displayIncomes(startDate, endDate);
     cout << endl;
+
+    sort(expenses.begin(), expenses.end());
+    cout << "Expenses: " << endl;
+    displayExpenses(startDate, endDate);
+    cout << endl;
+
+    float incomesSum = 0.0;
+    int incomesSize = incomes.size();
+    for (int i = 0; i < incomesSize; i++) {
+        if (incomes[i].getDate() >= startDate && incomes[i].getDate() <= endDate)
+            incomesSum += incomes[i].getAmount();
+    }
+
+    float expensesSum = 0.0;
+    int expensesSize = expenses.size();
+    for (int i = 0; i < expensesSize; i++) {
+        if (expenses[i].getDate() >= startDate && expenses[i].getDate() <= endDate)
+            expensesSum += expenses[i].getAmount();
+    }
+
+    cout << "Sum of INCOMES: " << incomesSum << endl;
+    cout << "Sum of EXPENSES: " << expensesSum << endl;
+    cout << "Balance: " << incomesSum - expensesSum << endl;
+
+    system("pause");
 
 }
 

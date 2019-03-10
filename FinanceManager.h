@@ -36,7 +36,8 @@ public:
     };
     void addIncome();
     void addExpense();
-    void displayIncomes(); //development only
+    void displayIncomes(int startDate, int endDate); //development only
+    void displayExpenses();
     Income provideIncomeDetails();
     Expense provideExpenseDetails();
     bool amountCorrect(float amount);
@@ -44,6 +45,7 @@ public:
     void displayCurrentMonthBalance();
     string convertDateToValidDateFormat(int dateAsInteger);
     string intToStr(int number);
+    void displayExpenses(int startDate, int endDate);
 };
 
 
