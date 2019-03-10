@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include <time.h>
-#include <cstdlib> //development only
+//#include <time.h>
+//#include <cstdlib> //development only
 #include <algorithm>
 
 #include "Income.h"
@@ -23,8 +23,13 @@ class FinanceManager {
     const int LOGGED_USER_ID;
     TimeManager timeManager;
 
-    void displayIncomes(int startDate, int endDate); //development only
-
+    void displayIncomes(int startDate, int endDate);
+    Income provideIncomeDetails();
+    Expense provideExpenseDetails();
+    bool amountCorrect(float amount);
+    void displayBalance(int startDate, int endDate);
+    float enterAmount();
+    int enterDate();
 
 public:
     FinanceManager(string incomesFileName, string expensesFileName, int loggedUserId) :
@@ -35,20 +40,10 @@ public:
     };
     void addIncome();
     void addExpense();
-
-    Income provideIncomeDetails();
-    Expense provideExpenseDetails();
-    bool amountCorrect(float amount);
-    //string convertFloatToStr(float numberToConvert); //development only
     void displayCurrentMonthBalance();
     void displayPreviousMonthBalance();
-    string convertDateToValidDateFormat(int dateAsInteger);
-    //string intToStr(int number);
     void displayExpenses(int startDate, int endDate);
     void displayCustomPeriodBalance();
-    void displayBalance(int startDate, int endDate);
-    float enterAmount();
-    int enterDate();
 };
 
 
