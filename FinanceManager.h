@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <vector>
-//#include <time.h>
-//#include <cstdlib> //development only
 #include <algorithm>
 
 #include "Income.h"
@@ -36,7 +34,6 @@ public:
         incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_USER_ID(loggedUserId) {
         incomes = incomesFile.loadIncomesFromFile(LOGGED_USER_ID);
         expenses = expensesFile.loadExpensesFromFile(LOGGED_USER_ID);
-
     };
     void addIncome();
     void addExpense();
@@ -45,7 +42,5 @@ public:
     void displayExpenses(int startDate, int endDate);
     void displayCustomPeriodBalance();
 };
-
-
 
 #endif

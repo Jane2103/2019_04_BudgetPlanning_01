@@ -22,7 +22,6 @@ public:
     vector <Expense> loadExpensesFromFile(int loggedUserId);
     int getLastExpenseId();
     void saveExpenseIntoFile(Expense expense);
-    //string convertFloatToStr(float numberToConvert);
 };
 
 #endif

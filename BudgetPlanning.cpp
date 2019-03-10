@@ -44,7 +44,6 @@ void BudgetPlanning::displayLoggedUserMenu() {
     system("cls");
 
     cout << "Logged user: " << userManager.getUserName() << " " << userManager.getUserSurname() << endl;
-    cout << "Logged user id: " << userManager.getLoggedUserId() << endl; //development only
 
     cout << "------------------------------" << endl;
     cout << "(1) Add income" << endl;
